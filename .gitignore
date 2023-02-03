@@ -16,4 +16,4 @@
 *.dat
 *.script
 *.table
-
+*.vscode/

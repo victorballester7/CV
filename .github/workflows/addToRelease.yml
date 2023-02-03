@@ -17,8 +17,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "victor-cv.pdf"
-          asset_name: "victor-cv.pdf"
+          file: "victorCV_en.pdf"
+          asset_name: "victorCV_en.pdf"
           tag: ${{ github.ref }}
           overwrite: true
           body: "This is my CV."
