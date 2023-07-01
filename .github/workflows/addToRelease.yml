@@ -35,5 +35,5 @@ jobs:
         uses: csexton/release-asset-action@v2
         with:
           release-url: ${{ steps.create_release.outputs.upload_url }}
-          files: main.pdf
+          files: victor-cv.pdf
           github-token: ${{ secrets.GITHUB_TOKEN }}
