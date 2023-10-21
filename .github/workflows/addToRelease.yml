@@ -46,7 +46,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git clone https://github.com/victorballester7/victorballester7.github.io.git
-          copy victor-cv.pdf victorballester7.github.io/assets/pdf/
+          cp victor-cv.pdf victorballester7.github.io/assets/pdf/
           cd victorballester7.github.io
           git add .
           git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
