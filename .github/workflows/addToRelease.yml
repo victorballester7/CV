@@ -20,6 +20,20 @@ jobs:
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compile - victor-cv
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: victor-cv.tex
+      - name: Copy files to another repository
+        uses: lubu12/copy-files-to-repository@v1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-files: victor-cv.pdf
+          destination-username: victorballester7
+          destination-repository: victorballester7.github.io
+          destination-directory: assets/pdf
+          commit-email: victor.ballester.ribo@gmail.com
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -30,7 +44,6 @@ jobs:
           release_name: Release ${{ github.run_number }}
           draft: false
           prerelease: false
-
       - name: Upload asset to release
         uses: csexton/release-asset-action@v2
         with:
@@ -38,25 +51,6 @@ jobs:
           files: victor-cv.pdf
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-  update:
-    name: Update pdf in personal website
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Compile - victor-cv
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: victor-cv.tex
-      - name: Copy files to another repository
-        uses: lubu12/copy-files-to-repository@v1
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-files: "victor-cv.pdf"
-          destination-username: "victorballester7"
-          destination-repository: "victorballester7.github.io"
-          destination-directory: "assets/pdf"
-          commit-email: "victor.ballester.ribo@gmail.com"
       # - name: Commit and push changes
       #   run: |
       #     git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/victorballester7.github.io
