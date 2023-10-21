@@ -49,7 +49,7 @@ jobs:
           repository: victorballester7/cv
       - name: Copy PDF to victorballester7.github.io repository
         run: |
-          cp victor-cv.pdf ../victorballester7.github.io/assets/pdf/
+          cp victor-cv.pdf ../victorballester7.github.io/tree/master/assets/pdf/
       - name: Checkout victorballester7.github.io repository
         uses: actions/checkout@v2
         with:
