@@ -43,12 +43,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Generate PDF from LaTeX
+        run: |
+          pdflatex -interaction=nonstopmode -halt-on-error victor-cv.tex
       - name: Checkout
         uses: actions/checkout@v2
         with:
           repository: victorballester7/victorballester7.github.io
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: victorballester7.github.io
       - name: Update PDF file
         run: |
           mv victor-cv.pdf victorballester7.github.io/assets/pdf/
