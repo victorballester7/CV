@@ -39,27 +39,15 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   update:
-    name: Update PDF in victorballester7.github.io
+    name: Update pdf in personal website
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout cv repository
-        uses: actions/checkout@v2
-        with:
-          repository: victorballester7/cv
-      - name: Copy PDF to victorballester7.github.io repository
-        run: |
-          cp victor-cv.pdf ../victorballester7.github.io/tree/master/assets/pdf/
-      - name: Checkout victorballester7.github.io repository
-        uses: actions/checkout@v2
-        with:
-          repository: victorballester7/victorballester7.github.io
-          path: victorballester7.github.io
       - name: Commit and push changes
         run: |
+          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7.github.io
+          copy victor-cv.pdf victorballester7.github.io/assets/pdf/
           cd victorballester7.github.io
-          git config --local user.email "victor.ballester.ribo@gmail.com"
-          git config --local user.name "victorballester7"
-          git add assets/pdf/victor-cv.pdf
-          git commit -m "Update CV PDF"
-          git push
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
+          git push target master
