@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build_pdf:
     name: Publish binaries
     runs-on: ubuntu-latest
 
@@ -37,3 +37,24 @@ jobs:
           release-url: ${{ steps.create_release.outputs.upload_url }}
           files: victor-cv.pdf
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  update:
+    name: Update pdf in personal website
+    runs-on: ubuntu-latest
+
+    # git clone repository git@github.com:victorballester7/victorballester7.github.io.git, and add the pdf release to assets/pdf/, and then commit and push
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: victorballester7/victorballester7.github.io
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: victorballester7.github.io
+      - name: Update pdf
+        run: |
+          cd victorballester7.github.io
+          git config --local user.email "victor.ballester.ribo@gmail.com"
+          git config --local user.name "victorballester7"
+          git add assets/pdf/victor-cv.pdf
+          git commit -m "Updated CV pdf"
+          git push
