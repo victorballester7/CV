@@ -26,6 +26,7 @@ jobs:
           root_file: victor-cv.tex
       - name: Copy files to another repository
         uses: lubu12/copy-files-to-repository@v1
+        # Recall that you have to create (now it's created) a secret called API_TOKEN_GITHUB with a token with repo permissions and then you have to add it to the repository secrets. See the repository of lubu12 for more information.
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
@@ -50,15 +51,3 @@ jobs:
           release-url: ${{ steps.create_release.outputs.upload_url }}
           files: victor-cv.pdf
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Commit and push changes
-      #   run: |
-      #     git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/victorballester7.github.io
-      #     git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/CV
-      #     cp CV/victor-cv.pdf victorballester7.github.io/assets/pdf/
-      #     cd victorballester7.github.io
-      #     git config --local user.email "victor.ballester.ribo@gmail.com"
-      #     git config --local user.name "victorballester7"
-      #     git add .
-      #     git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
-      #     git push origin master
