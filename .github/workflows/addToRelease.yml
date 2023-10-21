@@ -39,26 +39,27 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   update:
-    name: Update pdf in personal website
+    name: Update PDF in victorballester7.github.io
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate PDF from LaTeX
+      - name: Checkout cv repository
+        uses: actions/checkout@v2
+        with:
+          repository: victorballester7/cv
+      - name: Copy PDF to victorballester7.github.io repository
         run: |
-          pdflatex -interaction=nonstopmode -halt-on-error victor-cv.tex
-      - name: Checkout
+          cp victor-cv.pdf ../victorballester7.github.io/assets/pdf/
+      - name: Checkout victorballester7.github.io repository
         uses: actions/checkout@v2
         with:
           repository: victorballester7/victorballester7.github.io
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Update PDF file
-        run: |
-          mv victor-cv.pdf victorballester7.github.io/assets/pdf/
+          path: victorballester7.github.io
       - name: Commit and push changes
         run: |
-          cd victorballester7/victorballester7.github.io
-          git config --local user.email "victor.ballester.ribo@gmail.com
-          git config --local user.name "Víctor Ballester Ribó"
+          cd victorballester7.github.io
+          git config --local user.email "victor.ballester.ribo@gmail.com"
+          git config --local user.name "victorballester7"
           git add assets/pdf/victor-cv.pdf
           git commit -m "Update CV PDF"
           git push
