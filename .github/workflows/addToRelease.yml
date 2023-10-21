@@ -43,14 +43,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Commit and push changes
-        run: |
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/victorballester7.github.io
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/CV
-          cp CV/victor-cv.pdf victorballester7.github.io/assets/pdf/
-          cd victorballester7.github.io
-          git config --local user.email "victor.ballester.ribo@gmail.com"
-          git config --local user.name "victorballester7"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
-          git push origin master
+      - name: Copy files to another repository
+        uses: lubu12/copy-files-to-repository@v1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-files: "victor-cv.pdf"
+          destination-username: "victorballester7"
+          destination-repository: "victorballester7.github.io"
+          destination-directory: "assets/pdf"
+          commit-email: "victor.ballester.ribo@gmail.com"
+      # - name: Commit and push changes
+      #   run: |
+      #     git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/victorballester7.github.io
+      #     git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/CV
+      #     cp CV/victor-cv.pdf victorballester7.github.io/assets/pdf/
+      #     cd victorballester7.github.io
+      #     git config --local user.email "victor.ballester.ribo@gmail.com"
+      #     git config --local user.name "victorballester7"
+      #     git add .
+      #     git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
+      #     git push origin master
