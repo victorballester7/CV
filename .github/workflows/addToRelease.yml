@@ -47,9 +47,10 @@ jobs:
         run: |
           git clone https://github.com/victorballester7/victorballester7.github.io.git
           git clone https://github.com/victorballester7/CV.git
-          ls
           cp CV/victor-cv.pdf victorballester7.github.io/assets/pdf/
           cd victorballester7.github.io
+          git config --local user.email "victor.ballester.ribo@gmail.com"
+          git config --local user.name "victorballester7"
           git add .
           git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
           git push target master
