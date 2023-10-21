@@ -45,8 +45,8 @@ jobs:
     steps:
       - name: Commit and push changes
         run: |
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/victorballester7.github.io.git
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/CV.git
+          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/victorballester7.github.io
+          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/victorballester7/CV
           cp CV/victor-cv.pdf victorballester7.github.io/assets/pdf/
           cd victorballester7.github.io
           git config --local user.email "victor.ballester.ribo@gmail.com"
