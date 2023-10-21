@@ -46,6 +46,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git clone https://github.com/victorballester7/victorballester7.github.io.git
+          ls
           cp https://github.com/victorballester7/CV/releases/latest/download/victor-cv.pdf victorballester7.github.io/assets/pdf/
           cd victorballester7.github.io
           git add .
