@@ -43,12 +43,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Compile - victor-cv
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: victor-cv.tex
       - name: Copy files to another repository
         uses: lubu12/copy-files-to-repository@v1
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: "https://github.com/victorballester7/CV/blob/main/victor-cv.pdf"
+          source-files: "victor-cv.pdf"
           destination-username: "victorballester7"
           destination-repository: "victorballester7.github.io"
           destination-directory: "assets/pdf"
