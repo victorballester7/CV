@@ -42,7 +42,6 @@ jobs:
     name: Update pdf in personal website
     runs-on: ubuntu-latest
 
-    # git clone repository git@github.com:victorballester7/victorballester7.github.io.git, and add the pdf release to assets/pdf/, and then commit and push
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -50,11 +49,14 @@ jobs:
           repository: victorballester7/victorballester7.github.io
           token: ${{ secrets.GITHUB_TOKEN }}
           path: victorballester7.github.io
-      - name: Update pdf
+      - name: Update PDF file
         run: |
-          cd victorballester7.github.io
-          git config --local user.email "victor.ballester.ribo@gmail.com"
-          git config --local user.name "victorballester7"
+          mv victor-cv.pdf victorballester7.github.io/assets/pdf/
+      - name: Commit and push changes
+        run: |
+          cd victorballester7/victorballester7.github.io
+          git config --local user.email "victor.ballester.ribo@gmail.com
+          git config --local user.name "Víctor Ballester Ribó"
           git add assets/pdf/victor-cv.pdf
-          git commit -m "Updated CV pdf"
+          git commit -m "Update CV PDF"
           git push
