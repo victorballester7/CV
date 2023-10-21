@@ -48,7 +48,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: "victor-cv.pdf"
+          source-files: "https://github.com/victorballester7/CV/blob/main/victor-cv.pdf"
           destination-username: "victorballester7"
           destination-repository: "victorballester7.github.io"
           destination-directory: "assets/pdf"
