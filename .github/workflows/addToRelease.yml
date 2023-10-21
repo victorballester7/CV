@@ -53,4 +53,4 @@ jobs:
           git config --local user.name "victorballester7"
           git add .
           git diff-index --quiet HEAD || git commit -m "Automatic publish of CV"
-          git push target master
+          git push origin master
